@@ -5,11 +5,11 @@
 
 > ## Explicatii Tema1(Ex3) - Tehnici de Compilare. 
 
-In cadrul acestei aplicatii java am implimentat algoritmul de transformare a unui regex in forma infix sau postfix folosind regulile Algoritmului Thompson. Pentru detalii accesati [urmatorul link](https://en.wikipedia.org/wiki/Thompson%27s_construction)
+In cadrul acestei aplicatii java am implimentat algoritmul de transformare a unui regex in forma infix prefix sau postfix folosind regulile Algoritmului Thompson. Pentru detalii accesati [urmatorul link](https://en.wikipedia.org/wiki/Thompson%27s_construction)
 
-In cadrul aplicatiei user-ul are un mic menu, in care este capabil sa aleaga forma dorita (*prefix/infix*) si respectiv sa introduca regex-ul. Am implementat si o mica parte de validare a regexului, care verifica ca simbolurile aparute in regex sa fie valide conform formei alese. Deasemenea, aplicatia tine cont si de partea sintactica a regexului, asftel incat in cazul unui input gresit ca sintaxa, va impune userul sa introduca un input valid.
+In cadrul aplicatiei user-ul are un mic menu, in care este capabil sa aleaga forma dorita (*prefix/infix/postfix*) si respectiv sa introduca regex-ul. Am implementat si o mica parte de validare a regexului, care verifica ca simbolurile aparute in regex sa fie valide conform formei alese. Deasemenea, aplicatia tine cont si de partea sintactica a regexului, asftel incat in cazul unui input gresit ca sintaxa, va impune userul sa introduca un input valid.
 
-In cazul unui input valid, algoritmul construieste AFN-ul si deschide automat o fereastra in care prezinta graful rezultat. Mai mult ca atat, acesta va fi salvat intr-o poza de tip png in direcotrul src/main/resources sub numele NFA-Visualization.png . Aveti mai jos un exemplu de AFN construit pentru urmatoarea expresie in forma infix *(a|b)*a(a|b)(a|b)* :
+In cazul unui input valid, algoritmul construieste AFN-ul si deschide automat o fereastra in care prezinta graful rezultat. Mai mult ca atat, acesta va fi salvat intr-o poza de tip png in direcotrul src/main/resources sub numele 'NFA-Visualization.png'. Aveti mai jos un exemplu de AFN construit pentru urmatoarea expresie in forma infix *(a|b)*a(a|b)(a|b)* :
 
 ![](Tema1-RegexToNFA/src/main/resources/NFA-Visualization.png)
 ------------------------------------------------------------------------
@@ -38,4 +38,4 @@ Astfel, pentru fiecare caracter din regex in functie de tipul acestuia, simbol s
  - *pentru operatorul* 'star' *apelez metoda kleene care simuleaza regula kleene din algortimul Thompson* '*'
  - *pentru operatorul '.' apelez metoda concatenate care simuleaza regula de concatenare din algortimul Thompson* '.'
 
-Pentru construirea grafica a AFN-ului am folosit libraria *jgrapht*. 
+Pentru construirea grafica a AFN-ului am folosit libraria **jgrapht**. 
