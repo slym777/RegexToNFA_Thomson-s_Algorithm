@@ -9,7 +9,7 @@ In cadrul acestei aplicatii java am implimentat algoritmul de transformare a unu
 
 In cadrul aplicatiei user-ul are un mic menu, in care este capabil sa aleaga forma dorita (*prefix/infix*) si respectiv sa introduca regex-ul. Am implementat si o mica parte de validare a regexului, care verifica ca simbolurile aparute in regex sa fie valide conform formei alese. Deasemenea, aplicatia tine cont si de partea sintactica a regexului, asftel incat in cazul unui input gresit ca sintaxa, va impune userul sa introduca un input valid.
 
-In cazul unui input valid, algoritmul construieste AFN-ul si deschide automat o fereastra in care prezinta graful rezultat. Mai mult ca atat, acesta va fi salvat intr-o poza de tip png. Aveti un exemplu mai jos :
+In cazul unui input valid, algoritmul construieste AFN-ul si deschide automat o fereastra in care prezinta graful rezultat. Mai mult ca atat, acesta va fi salvat intr-o poza de tip png. Aveti mai jos un exemplu de AFN construit pentru urmatoarea expresie in forma infix *(a|b)*a(a|b)(a|b)*
 
-![AFN-ul rezultat pentru ](Tema1-RegexToNFA/src/main/resources/NFA-Visualization.png)
+![](Tema1-RegexToNFA/src/main/resources/NFA-Visualization.png)
 
