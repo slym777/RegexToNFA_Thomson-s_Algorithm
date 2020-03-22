@@ -11,5 +11,5 @@ In cadrul aplicatiei user-ul are un mic menu, in care este capabil sa aleaga for
 
 In cazul unui input valid, algoritmul construieste AFN-ul si deschide automat o fereastra in care prezinta graful rezultat. Mai mult ca atat, acesta va fi salvat intr-o poza de tip png. Aveti un exemplu mai jos :
 
-![](Tema1-RegexToNFA/src/main/resources/NFA-Visualization.png)
+![AFN-ul rezultat pentru ](Tema1-RegexToNFA/src/main/resources/NFA-Visualization.png)
 
