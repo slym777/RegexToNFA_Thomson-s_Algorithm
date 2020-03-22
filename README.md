@@ -1,5 +1,5 @@
 # RegexToNFA_Thomson-s_Algorithm
-*This is a small java application which converts a regex in infix or prefix form to its equivalent NFA using Thomson's Algorithm.*
+*This is a small java application which converts a regex in infix,prefix or postfix form to its equivalent NFA using Thomson's Algorithm.*
 
 ----------------------
 
@@ -9,7 +9,7 @@ In cadrul acestei aplicatii java am implimentat algoritmul de transformare a unu
 
 In cadrul aplicatiei user-ul are un mic menu, in care este capabil sa aleaga forma dorita (*prefix/infix/postfix*) si respectiv sa introduca regex-ul. Am implementat si o mica parte de validare a regexului, care verifica ca simbolurile aparute in regex sa fie valide conform formei alese. Deasemenea, aplicatia tine cont si de partea sintactica a regexului, asftel incat in cazul unui input gresit ca sintaxa, va impune userul sa introduca un input valid.
 
-In cazul unui input valid, algoritmul construieste AFN-ul si deschide automat o fereastra in care prezinta graful rezultat. Mai mult ca atat, acesta va fi salvat intr-o poza de tip png in direcotrul src/main/resources sub numele 'NFA-Visualization.png'. Aveti mai jos un exemplu de AFN construit pentru urmatoarea expresie in forma infix *(a|b)*a(a|b)(a|b)* :
+In cazul unui input valid, algoritmul construieste AFN-ul si deschide automat o fereastra in care prezinta graful rezultat. Mai mult ca atat, acesta va fi salvat intr-o poza de tip png in direcotrul src/main/resources sub numele 'NFA-Visualization.png'. Aveti mai jos un exemplu de AFN construit pentru urmatoarea expresie in forma infix (a|b)(star)a(a|b)(a|b) :
 
 ![](Tema1-RegexToNFA/src/main/resources/NFA-Visualization.png)
 ------------------------------------------------------------------------
