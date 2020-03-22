@@ -33,9 +33,9 @@ Clasa **NFA** are drept campuri :
 
 In vederea simplificarii lucrului cu regex-ul, operez asupra acestui in forma postfix, deci transform regexul initial in forma sa postfix. Stivele joaca rolul principal in constuirea automatului, acestea permit legarea componentelor construite si formarea automatului.
 Astfel, pentru fiecare caracter din regex in functie de tipul acestuia, simbol sau tipul operatorului, apelez functia corespunzatoare: 
- *- pentru simbol construiesc o simpla tranzitie de la o stare la alta adaugand noile stari in stive* 
- *- pentru operatorul or apelez metoda union care simuleaza regula de uniune din algortimul Thompson* '|'
- *- pentru operatorul star apelez metoda kleene care simuleaza regula kleene din algortimul Thompson* '*'
- *- pentru operatorul de concatenare apelez metoda concatenate care simuleaza regula de concatenare din algortimul Thompson* '.'
+ - *pentru simbol construiesc o simpla tranzitie de la o stare la alta adaugand noile stari in stive* 
+ - *pentru operatorul* '|' *apelez metoda union care simuleaza regula de uniune din algortimul Thompson*
+ - *pentru operatorul* '*' *apelez metoda kleene care simuleaza regula kleene din algortimul Thompson* '*'
+ - *pentru operatorul '.' apelez metoda concatenate care simuleaza regula de concatenare din algortimul Thompson* '.'
 
 Pentru construirea grafica a AFN-ului am folosit libraria *jgrapht*. 
