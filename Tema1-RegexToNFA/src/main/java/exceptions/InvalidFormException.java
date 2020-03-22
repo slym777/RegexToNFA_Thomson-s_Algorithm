@@ -1,12 +1,12 @@
 package exceptions;
 
-public class InvalidInfixException extends Exception{
+public class InvalidFormException extends Exception{
 
-    public InvalidInfixException() {
+    public InvalidFormException() {
         super();
     }
 
-    public InvalidInfixException(String message) {
+    public InvalidFormException(String message) {
         super(message);
     }
 }

@@ -10,15 +10,13 @@ import java.util.Stack;
 public class PostFix {
 
     /** operators precedence map. */
-    public static final Map<Character, Integer> precedenceMap = new HashMap<>();
+    private static final Map<Character, Integer> precedenceMap = new HashMap<>();
 
     static {
         precedenceMap.put('(', 1);
         precedenceMap.put('|', 2);
         precedenceMap.put('.', 3); // explicit concatenation operator
-        precedenceMap.put('?', 4);
         precedenceMap.put('*', 4);
-        precedenceMap.put('+', 4);
         precedenceMap.put('^', 5);
     };
 
@@ -95,5 +93,37 @@ public class PostFix {
             postfix.append(stack.pop());
 
         return postfix.toString();
+    }
+
+    /** convert regular expression from prefix to postfix*/
+    public static String prefixToPostfix(String regex){
+        Stack<String> s= new Stack<String>();
+        int length = regex.length();
+        for (int i = length - 1; i >= 0; i--)
+        {
+            // check if symbol is operator
+            if (precedenceMap.containsKey(regex.charAt(i)))
+            {
+                if (i == 0){
+                    String op1 = s.peek(); s.pop();
+                    String temp = op1 + regex.charAt(i);
+                    s.push(temp);
+                }
+                else {
+                    String op1 = s.pop();
+                    String op2 = s.pop();
+                    String temp = op1 + op2 + regex.charAt(i);
+                    s.push(temp);
+                }
+            }
+            else
+                s.push( regex.charAt(i)+"");
+
+        }
+        return s.peek();
+    }
+
+    public static Map<Character, Integer> getPrecedenceMap() {
+        return precedenceMap;
     }
 }

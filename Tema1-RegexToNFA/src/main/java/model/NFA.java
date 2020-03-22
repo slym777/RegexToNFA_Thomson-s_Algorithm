@@ -22,12 +22,13 @@ public class NFA {
     public NFA(){
     }
     
-    public NFA(String regex, boolean isInfix) {
+    public NFA(String regex, boolean isInfix, boolean isPrefix) {
         stateCount = 0;
         this.regex = regex;
-        if (isInfix) {
+        if (isInfix)
             this.regex = PostFix.infixToPostfix(regex);
-        }
+        if (isPrefix)
+            this.regex = PostFix.prefixToPostfix(regex);
         symbolList = new LinkedList<Character>();
         transitionsList = new LinkedList<Transition>();
         finalStates = new LinkedList<State>();
@@ -42,7 +43,7 @@ public class NFA {
     /** checks for symbols in postFixRegExp and adds them to the list of symbols */
     private void computeSymbolList() {
         for (int i = 0; i < regex.length(); i++) {
-            if(!PostFix.precedenceMap.containsKey(regex.charAt(i)))
+            if(!PostFix.getPrecedenceMap().containsKey(regex.charAt(i)))
                 if (!symbolList.contains(regex.charAt(i)))
                     symbolList.add(regex.charAt(i));
         }
@@ -80,12 +81,7 @@ public class NFA {
         for (int i = 0; i < regex.length(); i ++) {
             // if next symbol is not operator, construct a simple transition
             if (symbolList.contains(regex.charAt(i))) {
-                Transition tr1 = new Transition(Character.toString(regex.charAt(i)));
-                transitionsList.add(tr1);
-                State initialState = tr1.getFromState();
-                State finalState = tr1.getToState();
-                stackFromState.push(initialState);
-                stackToState.push(finalState);
+                simpleTransition(Character.toString(regex.charAt(i)));
 
             } else if (Character.toString(regex.charAt(i)).equals("|")) {
                 State lowerInitial = stackFromState.pop();
@@ -116,6 +112,15 @@ public class NFA {
 
         // initial state
         initialState = stackFromState.pop();
+    }
+
+    private void simpleTransition(String character){
+        Transition tr1 = new Transition(character);
+        transitionsList.add(tr1);
+        State initialState = tr1.getFromState();
+        State finalState = tr1.getToState();
+        stackFromState.push(initialState);
+        stackToState.push(finalState);
     }
 
     /** union according Thompson's algorithm */

@@ -1,8 +1,7 @@
 import com.mxgraph.layout.mxCompactTreeLayout;
 import com.mxgraph.layout.mxIGraphLayout;
 import com.mxgraph.util.mxCellRenderer;
-import exceptions.InvalidInfixException;
-import exceptions.InvalidPrefixException;
+import exceptions.InvalidFormException;
 import graph.MyJGraphXAdapter;
 import graph.SymbolEdge;
 import model.NFA;
@@ -21,21 +20,25 @@ public class Main {
 
     private static List<Character> infixOperands = Arrays.asList('|', '*', '^', '(', ')');
 
-    private static List<Character> postfixOperands = Arrays.asList('|', '*', '^', '.', '(', ')');
+    private static List<Character> postfixOperands = Arrays.asList('|', '*', '^', '.');
 
     private static final String MENU = "\nWelcome. Please choose your option: \n" +
             "1.Regex in infix form \n" +
             "2.Regex in prefix form \n" +
+            "3.Regex in postfix form \n" +
             "Type quit to exit\n";
 
     private static final String INFO_INFIX = "\nAvailable alphabet : [a-z], [A-Z], [0-9]\n" +
             "Available operators : '|', '*', '^'\n" +
             "Enter your regex in infix form:\n";
 
-    private static final String INFO_PREFIX = "\nAvailable alphabet : [a-z], [A-Z], [0-9]" +
+    private static final String INFO_PREFIX = "\nAvailable alphabet : [a-z], [A-Z], [0-9]\n" +
             "Available operators : '|', '*', '^', '.'\n" +
             "Enter your regex in prefix form:\n";
 
+    private static final String INFO_POSTFIX = "\nAvailable alphabet : [a-z], [A-Z], [0-9]\n" +
+            "Available operators : '|', '*', '^', '.'\n" +
+            "Enter your regex in postfix form:\n";
     private static final String INVALID_OPTION = "\nInvalid option. Try again\n";
 
     private static final String BYE_MESSAGE = "\nHave a nice day!";
@@ -44,59 +47,83 @@ public class Main {
 
     private static final String INVALID_REGEX_INFIX = "Invalid regex in infix form. Enter again:";
 
+    private static final String INVALID_REGEX_POSTFIX = "Invalid regex in postfix form. Enter again:";
+
     public static void main(String[] args){
         String option;
-        boolean isExited = false, isInfix = true, isValidated = false;
+        boolean exit = false, isInfix = false, isValidated = false, isPrefix = false;
         Scanner scanner = new Scanner(System.in);
-        while (!isExited){
+        while (!exit){
             System.out.println(MENU);
             option = scanner.nextLine();
             switch (option.toLowerCase()) {
                 case "1": {
                     System.out.println(INFO_INFIX);
                     String regex;
+                    isInfix = true;
                     NFA resultedNFA = null;
                     while(!isValidated){
                         regex  = scanner.nextLine();
                         try {
                             if (!validateRegex(regex, isInfix))
-                                throw new InvalidInfixException(INVALID_REGEX_INFIX);
-                            resultedNFA = new NFA(regex, isInfix);
+                                throw new InvalidFormException(INVALID_REGEX_INFIX);
+                            resultedNFA = new NFA(regex, isInfix, isPrefix);
                             isValidated = true;
-                        } catch (InvalidInfixException exception){
+                        } catch (InvalidFormException exception){
                             System.out.println(exception.getMessage());
                         } catch (Exception exception){
                             System.out.println(INVALID_REGEX_INFIX);
                         }
                     }
                     generateNFAGraph(resultedNFA);
-                    isExited = true;
+                    exit = true;
                     break;
                 }
                 case "2": {
                     System.out.println(INFO_PREFIX);
-                    isInfix = false;
+                    isPrefix = true;
                     String regex;
                     NFA resultedNFA = null;
                     while(!isValidated){
                         regex  = scanner.nextLine();
                         try {
                             if (!validateRegex(regex, isInfix))
-                                throw new InvalidPrefixException(INVALID_REGEX_PREFIX);
-                            resultedNFA = new NFA(regex, isInfix);
+                                throw new InvalidFormException(INVALID_REGEX_PREFIX);
+                            resultedNFA = new NFA(regex, isInfix, isPrefix);
                             isValidated = true;
-                        } catch (InvalidPrefixException exception){
+                        } catch (InvalidFormException exception){
                             System.out.println(exception.getMessage());
                         } catch (Exception exception){
                             System.out.println(INVALID_REGEX_PREFIX);
                         }
                     }
                     generateNFAGraph(resultedNFA);
-                    isExited = true;
+                    exit = true;
+                    break;
+                }
+                case "3": {
+                    System.out.println(INFO_POSTFIX);
+                    String regex;
+                    NFA resultedNFA = null;
+                    while(!isValidated){
+                        regex  = scanner.nextLine();
+                        try {
+                            if (!validateRegex(regex, isInfix))
+                                throw new InvalidFormException(INVALID_REGEX_POSTFIX);
+                            resultedNFA = new NFA(regex, isInfix, isPrefix);
+                            isValidated = true;
+                        } catch (InvalidFormException exception){
+                            System.out.println(exception.getMessage());
+                        } catch (Exception exception){
+                            System.out.println(INVALID_REGEX_POSTFIX);
+                        }
+                    }
+                    generateNFAGraph(resultedNFA);
+                    exit = true;
                     break;
                 }
                 case "quit": {
-                    isExited = true;
+                    exit = true;
                     break;
                 }
                 default: {
